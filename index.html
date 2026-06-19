@@ -314,6 +314,7 @@ h2 {
   font-size: 1.2rem; margin-bottom: 0.5rem;
   color: var(--text);
 }
+.proj-name-badge { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
 .proj-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
 .proj-wins {
   display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem;
@@ -338,6 +339,15 @@ h2 {
 /* ── AI SECTION ── */
 .ai-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+.ai-hero-card {
+  display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start;
+}
+.ai-bot-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.orch-flow-row {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
 }
 .ai-card {
   background: var(--card); border: 1px solid var(--border);
@@ -501,20 +511,65 @@ footer .ac { color: var(--accent); }
   .career-grid { grid-template-columns: 1fr; }
   .profile-card { position: static; }
   .ai-grid { grid-template-columns: 1fr; }
+  .ai-hero-card { grid-template-columns: 1fr; }
+  .ai-bot-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  nav { padding: 0.9rem 1.5rem; }
+  nav { padding: 0.9rem 1.2rem; }
   .nav-links { display: none; }
-  section.s, section.s-alt { padding: 4rem 1.5rem; }
-  #contact { padding: 4rem 1.5rem 5rem; }
-  footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.4rem; }
-  .impact-grid { grid-template-columns: 1fr 1fr; }
+  section.s, section.s-alt { padding: 3.5rem 1.25rem; }
+  #hero { padding: 6.5rem 1.25rem 3rem; gap: 2.5rem; }
+  #contact { padding: 3.5rem 1.25rem 4rem; }
+  footer { padding: 1.2rem 1.25rem; flex-direction: column; gap: 0.4rem; text-align: center; }
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.5rem; margin-bottom: 2rem; }
+  .hero-title-sub { font-size: 0.95rem; }
+  .hero-summary { font-size: 0.88rem; }
+
+  .hero-stats { gap: 1.2rem; flex-wrap: wrap; }
+  .stat-num { font-size: 1.5rem; }
+
+  .photo-frame { width: 160px; height: 160px; }
+
+  .impact-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .impact-card { padding: 1.3rem 1rem; }
+  .impact-num { font-size: 2rem; }
+
   .expertise-grid { grid-template-columns: 1fr; }
-  .proj-item { grid-template-columns: 100px 1fr; gap: 0 1.5rem; }
-  .proj-item::before { left: 99px; }
-  .proj-dot { left: 92px; }
-  h1 { font-size: 2.4rem; }
-  .hero-stats { gap: 1.5rem; }
+  .exp-card { padding: 1.4rem; }
+
+  /* Project timeline collapses to stacked cards on small screens */
+  .proj-item { grid-template-columns: 1fr; gap: 0.5rem; padding-bottom: 2.2rem; }
+  .proj-item::before { display: none; }
+  .proj-dot { display: none; }
+  .proj-meta { text-align: left; display: flex; gap: 0.6rem; align-items: baseline; }
+  .proj-name { font-size: 1.05rem; }
+  .proj-name-badge { gap: 0.5rem; }
+
+  .ai-card { padding: 1.4rem; }
+  .ai-card-title { font-size: 0.95rem; }
+  .orch-flow-row { gap: 0.5rem; }
+  .orch-flow-row > div { font-size: 0.65rem !important; padding: 0.45rem 0.7rem !important; }
+
+  .stack-categories { gap: 1.5rem; }
+  .stack-pill { padding: 0.4rem 0.8rem; }
+  .pill-name { font-size: 0.7rem; }
+
+  .career-entry { margin-bottom: 1.8rem; }
+  .profile-card { padding: 1.4rem; }
+
+  .contact-row { flex-direction: column; align-items: stretch; }
+  .contact-pill { justify-content: center; }
+}
+@media (max-width: 420px) {
+  h1 { font-size: 1.9rem; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1rem; }
+  .stat-num { font-size: 1.3rem; }
+  .photo-frame { width: 140px; height: 140px; }
+  .eyebrow { font-size: 0.62rem; }
+  .eyebrow::before { width: 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fu { animation: none; }
@@ -740,7 +795,7 @@ footer .ac { color: var(--accent); }
       </div>
       <div class="proj-dot" style="border-color:var(--accent2);box-shadow:0 0 8px rgba(129,140,248,0.4);"></div>
       <div class="proj-body">
-        <div class="proj-name" style="display:flex;align-items:center;gap:0.7rem;">
+        <div class="proj-name proj-name-badge">
           V2 Retail — Full-Stack D2C Growth Activation
           <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);border:1px solid rgba(129,140,248,0.3);border-radius:4px;padding:0.15rem 0.5rem;letter-spacing:0.08em;">LIVE</span>
         </div>
@@ -798,7 +853,7 @@ footer .ac { color: var(--accent); }
   <div style="display:flex;flex-direction:column;gap:1.2rem;">
 
     <!-- Hero bot -->
-    <div class="ai-card featured" style="display:grid;grid-template-columns:1fr 280px;gap:2rem;align-items:start;">
+    <div class="ai-card featured ai-hero-card">
       <div>
         <div class="ai-card-tag">🧠 Flagship · Active</div>
         <div class="ai-card-title" style="font-size:1.25rem;margin-bottom:0.6rem;">AI Chief of Staff</div>
@@ -825,7 +880,7 @@ footer .ac { color: var(--accent); }
     </div>
 
     <!-- 2-col bots row -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+    <div class="ai-bot-grid">
 
       <div class="ai-card">
         <div class="ai-card-tag">🛒 Active · eCommerce Ops</div>
@@ -876,7 +931,7 @@ footer .ac { color: var(--accent); }
     <!-- Orchestration flow strip -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.4rem;">How the bots chain together · Orchestration Flow</div>
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.6rem;">
+      <div class="orch-flow-row">
         <div style="background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);border-radius:8px;padding:0.55rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);">Gmail · Slack · Asana · Fireflies</div>
         <div style="color:var(--muted);font-size:1.1rem;">→</div>
         <div style="background:rgba(129,140,248,0.08);border:1px solid rgba(129,140,248,0.2);border-radius:8px;padding:0.55rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent2);">MCP Servers + Claude API</div>
